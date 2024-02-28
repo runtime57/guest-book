@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Гостевая книга</title>
+
+    <h1>Все посты пользователя {{ user.login}}: </h1>
+
+    {% if user == cur_user %}
+        <a href="/add_post" role="button">Добавить пост</a>
+    {% endif %}
+</head>
+<body>
+<ul>
+    {% for post in posts %}
+    <li>
+        <h3> {{post.title}} </h3>
+        <p> {{post.content}}</p>
+        <small>by {{ post.user.login }}</small><br>
+        {% if post.user == cur_user %}
+            <a href="/update_post/{{ post.id }}">Редактировать пост</a><br>
+            <a href="/api/delete_post/{{ post.id }}">Удалить пост</a><br>
+        {% endif %}
+        <a href="/add_comment/{{ post.id }}">Добавить комментарий</a><br>
+        <p> Комментарии: </p>
+        <ul>
+            {% for comment in comments %}
+                {% if comment.post_id == post.id %}
+                <li> {{ comment.content }}
+                    <small> by <a href="/all_posts_of_user/{{ comment.user.id }}">{{ comment.user.login }}</a></small><br>
+                    {% if comment.user == cur_user %}
+                        <a href="/update_comment/{{ comment.id }}">Редактировать комментарий</a><br>
+                        <a href="/api/delete_comment/{{ comment.id }}">Удалить комментарий</a><br><br>
+                    {% endif %}
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

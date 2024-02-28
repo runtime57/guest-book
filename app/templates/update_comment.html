@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Гостевая книга</title>
+</head>
+<body>
+    <div>
+        <h1>Редактирование комментария</h1>
+        <p> Комментарий: {{ comment.content }}</p>
+    </div>
+    <div>
+        <form method="POST" action="/api/update_comment/{{ comment.id }}">
+            <div>
+                <label for="content">Содержание</label>
+                <input name="content">
+            </div>
+            <button>Добавить</button>
+        </form>
+    </div>
+</body>
+</html>

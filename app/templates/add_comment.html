@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Гостевая книга</title>
+</head>
+<body>
+    <div>
+        <h1>Пост:</h1>
+        <h2> {{ post.title }} </h2>
+        <h2> {{ post.content }}</h2>
+    </div>
+    <div>
+        <h1>Добавить комментарий</h1>
+        <form method="POST" action="/api/add_comment/{{ post.id }}">
+            <div>
+                <label for="content">Содержание</label>
+                <input name="content">
+            </div>
+            <button>Добавить</button>
+        </form>
+    </div>
+  </body>
+</html>
